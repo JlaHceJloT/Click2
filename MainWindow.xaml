@@ -1,0 +1,29 @@
+﻿<Window x:Class="Click2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*"></ColumnDefinition>
+            <ColumnDefinition Width="400*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <TextBox Name="moveHorizontal"
+                 Width="100"
+                 Margin="48,23,266,267"
+                 Text="Horiz"
+                 Grid.Column="1"/>
+
+        <TextBox Name="moveVertical"
+                 Width="100"
+                 Margin="229,23,85,267"
+                 Text="Vertical"
+                 Grid.Column="1"/>
+
+        <Button Name="actionButton"
+                Content="DO IT"
+                Click="actionButton_Click">
+
+        </Button>
+    </Grid>
+</Window>
