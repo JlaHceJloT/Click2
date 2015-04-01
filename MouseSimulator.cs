@@ -69,7 +69,7 @@ namespace Click2
             public IntPtr dwExtraInfo;
         }
         [Flags]
-        enum MouseEventFlags : uint
+        internal enum MouseEventFlags : uint
         {
             MOUSEEVENTF_MOVE = 0x0001,
             MOUSEEVENTF_LEFTDOWN = 0x0002,
@@ -100,42 +100,24 @@ namespace Click2
 
         static int MOUSE_WAIT = 25;
 
-        public static void ClickLeftMouseButton()
+
+        public void ClickMouseButton(MouseEventFlags mouseKeyDown, MouseEventFlags mouseKeyUp)
         {
             INPUT mouseDownInput = new INPUT();
             mouseDownInput.type = SendInputEventType.InputMouse;
-            mouseDownInput.mkhi.mi.dwFlags = MouseEventFlags.MOUSEEVENTF_LEFTDOWN;
+            mouseDownInput.mkhi.mi.dwFlags = mouseKeyDown;
+            System.Threading.Thread.Sleep(MOUSE_WAIT);
+
             SendInput(1, ref mouseDownInput, Marshal.SizeOf(new INPUT()));
 
-            System.Threading.Thread.Sleep(MOUSE_WAIT);
-
-            INPUT mouseUpInput = new INPUT();
-            mouseUpInput.type = SendInputEventType.InputMouse;
-            mouseUpInput.mkhi.mi.dwFlags = MouseEventFlags.MOUSEEVENTF_LEFTUP;
-            SendInput(1, ref mouseUpInput, Marshal.SizeOf(new INPUT()));
-
-            System.Threading.Thread.Sleep(MOUSE_WAIT);
-
-        }
-        public static void ClickRightMouseButton()
-        {
-            INPUT mouseDownInput = new INPUT();
-            mouseDownInput.type = SendInputEventType.InputMouse;
-            mouseDownInput.mkhi.mi.dwFlags = MouseEventFlags.MOUSEEVENTF_RIGHTDOWN;
+            mouseDownInput.mkhi.mi.dwFlags = mouseKeyUp;
+            System.Threading.Thread.Sleep(MOUSE_WAIT); 
             SendInput(1, ref mouseDownInput, Marshal.SizeOf(new INPUT()));
-
-            System.Threading.Thread.Sleep(MOUSE_WAIT);
-
-            INPUT mouseUpInput = new INPUT();
-            mouseUpInput.type = SendInputEventType.InputMouse;
-            mouseUpInput.mkhi.mi.dwFlags = MouseEventFlags.MOUSEEVENTF_RIGHTUP;
-            SendInput(1, ref mouseUpInput, Marshal.SizeOf(new INPUT()));
-
-            System.Threading.Thread.Sleep(MOUSE_WAIT);
 
         }
 
-        public static void MoveMouseCursor(int dx, int dy)
+
+        public void MoveMouseCursor(int dx, int dy)
         {
             INPUT mouseMoveInput = new INPUT();
             mouseMoveInput.type = SendInputEventType.InputMouse;
