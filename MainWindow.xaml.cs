@@ -54,11 +54,6 @@ namespace Click2
         {
             //Cursor.Position = new Cursor.Position(Point(500, 500));
 
-            
-            
-            
-            
-            
             IntPtr calculatorHandle = FindWindow(null, "WoT client");
             //IntPtr calculatorHandle = FindWindow(null, "Калькулятор");
             if (calculatorHandle == IntPtr.Zero)
@@ -68,19 +63,36 @@ namespace Click2
             }
             SetForegroundWindow(calculatorHandle);
 
-           // MouseSimulator.MoveMouseCursor(0, 600);
-            for (int i = 0; i < 5; i++ )
-            {
-                MouseSimulator.MoveMouseCursor(100, 0);
-                MouseSimulator.ClickLeftMouseButton();
-                System.Threading.Thread.Sleep(300);
-            }
-                
+            // MouseSimulator.MoveMouseCursor(0, 600);
+            //for (int i = 0; i < 5; i++ )
+            //{
+            //    MouseSimulator.MoveMouseCursor(100, 0);
+            //    MouseSimulator.ClickLeftMouseButton();
+            //    System.Threading.Thread.Sleep(300);
+            //}
 
-            
 
-    
+            KeyboardSimulator.PressKey(KeyboardSimulator.ScanCodeShort.KEY_W, KeyboardSimulator.VirtualKeyShort.KEY_W, 10000);
+            KeyboardSimulator.PressKey(KeyboardSimulator.ScanCodeShort.KEY_A, KeyboardSimulator.VirtualKeyShort.KEY_A, 1000);
+            MouseSimulator.MoveMouseCursor(100, 0);
+            MouseSimulator.ClickLeftMouseButton();
+            System.Threading.Thread.Sleep(10000);
+            MouseSimulator.MoveMouseCursor(1000, 100);
+            MouseSimulator.ClickLeftMouseButton();
+
+
+            //System.Threading.Thread.Sleep(1000);
+            //MouseSimulator.PressKey(MouseSimulator.ScanCodeShort.KEY_A, MouseSimulator.VirtualKeyShort.KEY_A, 0);
+            //System.Threading.Thread.Sleep(1000);
+            //MouseSimulator.PressKey(MouseSimulator.ScanCodeShort.KEY_W, MouseSimulator.VirtualKeyShort.KEY_W, 0);
+            //MouseSimulator.PressKey(MouseSimulator.ScanCodeShort.KEY_A, MouseSimulator.VirtualKeyShort.KEY_A, 0);
+            //MouseSimulator.PressKey(MouseSimulator.ScanCodeShort.KEY_W, MouseSimulator.VirtualKeyShort.KEY_W, 0);
+
+
+
+
             //MouseSimulator.ClickRightMouseButton();
+
 
         }
 
