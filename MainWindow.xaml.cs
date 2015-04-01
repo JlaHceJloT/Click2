@@ -71,27 +71,15 @@ namespace Click2
             //    System.Threading.Thread.Sleep(300);
             //}
 
+            ControlPanel controlPanel = new ControlPanel();
 
-            KeyboardSimulator.PressKey(KeyboardSimulator.ScanCodeShort.KEY_W, KeyboardSimulator.VirtualKeyShort.KEY_W, 10000);
-            KeyboardSimulator.PressKey(KeyboardSimulator.ScanCodeShort.KEY_A, KeyboardSimulator.VirtualKeyShort.KEY_A, 1000);
-            MouseSimulator.MoveMouseCursor(100, 0);
-            MouseSimulator.ClickLeftMouseButton();
-            System.Threading.Thread.Sleep(10000);
-            MouseSimulator.MoveMouseCursor(1000, 100);
-            MouseSimulator.ClickLeftMouseButton();
-
-
-            //System.Threading.Thread.Sleep(1000);
-            //MouseSimulator.PressKey(MouseSimulator.ScanCodeShort.KEY_A, MouseSimulator.VirtualKeyShort.KEY_A, 0);
-            //System.Threading.Thread.Sleep(1000);
-            //MouseSimulator.PressKey(MouseSimulator.ScanCodeShort.KEY_W, MouseSimulator.VirtualKeyShort.KEY_W, 0);
-            //MouseSimulator.PressKey(MouseSimulator.ScanCodeShort.KEY_A, MouseSimulator.VirtualKeyShort.KEY_A, 0);
-            //MouseSimulator.PressKey(MouseSimulator.ScanCodeShort.KEY_W, MouseSimulator.VirtualKeyShort.KEY_W, 0);
-
-
-
-
-            //MouseSimulator.ClickRightMouseButton();
+            controlPanel.StartMoving(ControlPanel.MovingDirection.FORWARD);
+            System.Threading.Thread.Sleep(4000);
+            controlPanel.ClickMouseLeftButton();
+            controlPanel.StartMoving(ControlPanel.MovingDirection.LEFT);
+            System.Threading.Thread.Sleep(5000);
+            controlPanel.StopMoving(ControlPanel.MovingDirection.LEFT);
+            //controlPanel.StopMoving(ControlPanel.MovingDirection.FORWARD);
 
 
         }

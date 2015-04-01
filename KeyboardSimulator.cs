@@ -972,9 +972,9 @@ namespace Click2
             InputHardware
         }
 
-        const int KEYBOARD_WAIT = 20;
+        const int KEYBOARD_WAIT = 25;
 
-        public static void PressKey(ScanCodeShort scanKeyCode, VirtualKeyShort virtualKeyCode, int time)
+        public void PressKey(ScanCodeShort scanKeyCode, VirtualKeyShort virtualKeyCode)
         {
             INPUT keyPressInput = new INPUT();
             keyPressInput.type = SendInputEventType.InputKeyboard;
@@ -984,14 +984,30 @@ namespace Click2
             keyPressInput.mkhi.ki.wVk = virtualKeyCode;
             keyPressInput.mkhi.ki.dwExtraInfo = IntPtr.Zero;
 
+            System.Threading.Thread.Sleep(KEYBOARD_WAIT); // waiting for 25ms to be sure that directX will recognize this key
+
             SendInput(1, ref keyPressInput, Marshal.SizeOf(new INPUT()));
 
-            System.Threading.Thread.Sleep(System.Math.Max(KEYBOARD_WAIT, time));
-            
-            keyPressInput.mkhi.ki.dwFlags = KEYEVENTF.KEYUP;
-            SendInput(1, ref keyPressInput, Marshal.SizeOf(new INPUT()));
 
         }
+
+        public void UnpressKey(ScanCodeShort scanKeyCode, VirtualKeyShort virtualKeyCode)
+        {
+            INPUT keyPressInput = new INPUT();
+            keyPressInput.type = SendInputEventType.InputKeyboard;
+            keyPressInput.mkhi.ki.time = 0;
+            keyPressInput.mkhi.ki.dwFlags = KEYEVENTF.KEYUP;
+            keyPressInput.mkhi.ki.wScan = scanKeyCode;
+            keyPressInput.mkhi.ki.wVk = virtualKeyCode;
+            keyPressInput.mkhi.ki.dwExtraInfo = IntPtr.Zero;
+
+            System.Threading.Thread.Sleep(KEYBOARD_WAIT);
+
+            SendInput(1, ref keyPressInput, Marshal.SizeOf(new INPUT()));
+
+            
+        }
+
 
     }
 }
