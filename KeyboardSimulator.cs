@@ -16,7 +16,6 @@ using System.Windows.Interop;
 using System.Runtime.InteropServices;
 using Microsoft.DirectX.DirectInput;
 using Microsoft.DirectX;
-using DenisForWork;
 
 namespace Click2
 {
